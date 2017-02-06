@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editText;
     private TextView textView;
     private static final String TAG = "MainActivity";
-    private
+    private final String TEXT_CONTENTS = "TextContents";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +46,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        Log.d(TAG, "onStart: in");
         super.onStart();
-        Log.d(TAG, "onStart: Start");
+        Log.d(TAG, "onStart: out");
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        Log.d(TAG, "onRestoreInstanceState: in");
         super.onRestoreInstanceState(savedInstanceState);
-        Log.d(TAG, "onRestoreInstanceState: InstanceRestored");
+        String savedString = savedInstanceState.getString(TEXT_CONTENTS);
+        textView.setText(savedString);
+        Log.d(TAG, "onRestoreInstanceState: out");
     }
 
     /**
@@ -67,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     protected void onResume() {
+        Log.d(TAG, "onResume: in");
         super.onResume();
-
-        Log.d(TAG, "onResume: Resume");
+        Log.d(TAG, "onResume: out");
     }
 
     /**
@@ -77,25 +81,30 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     protected void onPause() {
+        Log.d(TAG, "onPause: in");
         super.onPause();
-        Log.d(TAG, "onPause: Pause");
+        Log.d(TAG, "onPause: out");
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "onSaveInstanceState: in");
+        outState.putString(TEXT_CONTENTS, textView.getText().toString());
         super.onSaveInstanceState(outState);
-        Log.d(TAG, "onSaveInstanceState: InstanceSaved");
+        Log.d(TAG, "onSaveInstanceState: out");
     }
 
     @Override
     protected void onStop() {
+        Log.d(TAG, "onStop: in");
         super.onStop();
-        Log.d(TAG, "onStop: Stop");
+        Log.d(TAG, "onStop: out");
     }
 
     @Override
     protected void onDestroy() {
+        Log.d(TAG, "onDestroy: in");
         super.onDestroy();
-        Log.d(TAG, "onDestroy: Destroy");
+        Log.d(TAG, "onDestroy: out");
     }
 }
